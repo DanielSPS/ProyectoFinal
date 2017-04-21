@@ -151,10 +151,13 @@ img {
   border-radius: 10px;
 }
 span {
+	
 	font-size: 2em;
-	position: absolute;
+	position: relative;
 	bottom: 2em;
 	color: white;
+	text-shadow: -2px -2px 1px black;
+	font-family: 'Lobster', cursive;
 }
 footer {
 	margin-top: 0.1em;
