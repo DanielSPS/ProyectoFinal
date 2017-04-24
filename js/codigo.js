@@ -81,9 +81,6 @@ function categoria (){
 				a.addClass('hidden');
 				preguntas();
 			}, 3000);
-		}else{
-			$(this).off('click', function(){
-			});
 		}
 	});
 }
