@@ -11,24 +11,26 @@
     <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/estilos.css">
+    <link href="https://fonts.googleapis.com/css?family=Noticia+Text" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Rubik+Mono+One" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
     <title>¿Sabes que...</title>
   </head>
   <body>
   <div>
-    
-    <div>
-      <div id="contacto">
-        <img src="img/iconolinkedinrecortado.png" alt="">
-        <img src="img/iconogithub.png" alt="">
-        <img src="img/iconolinkedinrecortado.png" alt="">
+    <div class="container col-sm-12" id="cabecera">
+      <p class="cabe col-sm-4 col-xs-12"><a href="#"><img src="img/Sabias.png" alt=""></a><span class="paginaprincipal">Pagina Principal</span></p>
+      <p class="cabeceraa col-sm-4 col-xs-12">¿Sabes que...</p>
+      <div id="contacto" class="col-sm-4 col-xs-12">
+        <a href=""><img src="img/iconolinkedinrecortado.png" alt=""></a>
+        <a href=""><img src="img/iconogithub.png" alt=""></a>
+        <a href=""><img src="img/iconolinkedinrecortado.png" alt=""></a>
+        <span class="proyecto">Contacto y proyecto</span>
       </div>
-      <p class="cabeceraa">¿Sabes que...</p>
-      <p id="creador">Creado por Daniel Sarmiento Paszor y Arturo Sarmiento Paszor</p>
     </div>
-    <div class="cabeceratitulo">
-      <svg viewBox="0 0 1320 555">
+    <div class="padre">
+      <div class="cabeceratitulo">
+        <svg viewBox="0 0 1320 150">
         <!-- Symbol -->
         <symbol id="s-text">
         <text text-anchor="middle"
@@ -47,23 +49,30 @@
         ></use>
         <use xlink:href="#s-text" class="text"
         ></use>
-      </svg>
+        </svg>
+      </div>
     </div>
-    <div class="padre">
-      <div class="tamaño"><img src="img/Menu/naturalezacortado.jpg" width="100%" alt="">
-        <span>Naturaleza</span></div>
-      <div class="tamaño"><img src="img/Menu/deportesrecortado.jpg" width="100%" alt="">
+    <section class="container col-md-12 prueba">
+      <div class="col-sm-2 col-xs-4 tamaño div-img">
+      <img src="img/naturalezacortado.jpg" id="marco" class="img"  width="100%" alt="">
+         <span>Naturaleza</span></div>
+       <div class="col-sm-2 col-xs-4 tamaño div-img">
+       <img src="img/deportesrecortado.jpg" id="marco" class="img" width="100%" alt="">
         <span>Deportes</span></div>
-      <div class="tamaño"><img src="img/Menu/geografiarecortado.jpg" width="100%" alt="">
+      <div class="col-sm-2 col-xs-4 tamaño div-img">
+      <img src="img/geografiarecortado.jpg" id="marco" class="img" width="100%" alt="">
         <span>Geografia</span></div>
-      <div class="tamaño"><img src="img/Menu/historiarecortado.jpg" width="100%" alt="">
+       <div class="col-sm-2 col-xs-4 tamaño div-img">
+       <img src="img/historiarecortado.jpg" id="marco" class="img" width="100%" alt="">
         <span>Historia</span></div>
-      <div class="tamaño"><img src="img/Menu/Todorecortado.jpg" width="100%" alt="">
+       <div class="col-sm-2 col-xs-4 tamaño div-img">
+       <img src="img/Todorecortado.jpg" id="marco" class="img" width="100%" alt="">
         <span>Todo</span></div>
-      <div class="tamaño"><img src="img/Menu/curiosidadesrecortado.jpg" width="100%" alt="">
+      <div class="col-sm-2 col-xs-4 tamaño div-img">
+      <img src="img/curiosidadesrecortado.jpg" id="marco" class="img" width="100%" alt="">
         <span>Curiosidades</span></div>
      </div>
-    </div>
+    </section>
   <div id="todo" hidden>   
     <div id="geografia">    
       <div id="g1" hidden>
@@ -170,6 +179,7 @@
         <p>Cabo San Lucas</p>
         <p><span>¡Muy bien!</span> Actualmente se considera que el primer europeo que desembarcó en la península de Baja California fue el piloto y navegante español Fortún Jiménez, quien ―al mando del navío Concepción― avistó y visitó en el año 1534 la península, que pensó que era una isla. <span> Mientras que el cabo de Hornos fue descubierto en 1525.</span></p>
       </div>
+      <footer><p id="creador"> &mdash; Creado por Arturo Sarmiento Paszor y Daniel Sarmiento Paszor &mdash;</p></footer>
             <script src="js/jquery.min.js"></script>
             <script src="js/bootstrap.min.js"></script>
             <script src="js/codigo.js"></script>
