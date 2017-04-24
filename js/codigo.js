@@ -1,4 +1,4 @@
-var a = $('div.padre').children();
+var a = $('section.prueba').children();
 var b;
 var c;
 var preg = [
@@ -66,7 +66,7 @@ $(document).ready(function() {
 function categoria (){
 	a.fadeTo('fast', 0.1);
 	$(this).fadeTo('fast', 1);
-	$('img').attr('src').click(function(){
+	$(this).one('click', function(){
 		$(this).removeAttr('style')
 		$(this).addClass('animated flip');
 		a.addClass('animated bounceOutLeft');
@@ -91,13 +91,13 @@ function preguntas(){
 			c = Math.floor(Math.random()*10 + 0);
 		}
 		b.preguntas[c].estado = true;
-		$('div.padre').append('<p class="texto animated bounceInRight">' + b.preguntas[c].textoEnunciado + '</p><p class="texto animated bounceInRight"><img src=img/Geografía/' + b.preguntas[c].imagenCorrecta + '>' + b.preguntas[c].correcta + '<img src=img/Geografía/' + b.preguntas[c].imagenIncorrecta + '>' + b.preguntas[c].incorrecta +'</p>');
+		$('section.prueba').append('<p class="texto animated bounceInRight">' + b.preguntas[c].textoEnunciado + '</p><p class="texto animated bounceInRight"><img src=img/' + b.preguntas[c].imagenCorrecta + '>' + b.preguntas[c].correcta + '<img src=img/' + b.preguntas[c].imagenIncorrecta + '>' + b.preguntas[c].incorrecta +'</p>');
 		$('img').one('click', function(){
 			setTimeout(function(){
 				$('p.texto').removeClass('animated bounceInRight');
 			}, 500);
-			if ($(this).attr('src') == 'img/Geografía/' + b.preguntas[c].imagenCorrecta) {
-				$('div.padre').append('<p class="texto animated bounceInRight">' + b.preguntas[c].correctaExplicacion + '</p>');
+			if ($(this).attr('src') == 'img/' + b.preguntas[c].imagenCorrecta) {
+				$('section.prueba').append('<p class="texto animated bounceInRight">' + b.preguntas[c].correctaExplicacion + '</p>');
 				setTimeout(function(){
 					$('p.texto').removeClass('animated bounceInRight');
 				}, 500);
@@ -109,7 +109,7 @@ function preguntas(){
 					preguntas();
 				}, 500);
 			}else{
-			$('div.padre').append('<p class="texto animated bounceInRight">' + b.preguntas[c].incorrectaExplicacion + '</p>');
+			$('section.prueba').append('<p class="texto animated bounceInRight">' + b.preguntas[c].incorrectaExplicacion + '</p>');
 			setTimeout(function(){
 				$('p.texto').removeClass('animated bounceInRight');
 			}, 500);
