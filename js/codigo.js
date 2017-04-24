@@ -66,7 +66,7 @@ $(document).ready(function() {
 function categoria (){
 	a.fadeTo('fast', 0.1);
 	$(this).fadeTo('fast', 1);
-	$(this).one('click', function (){
+	$('img').attr('src').click(function(){
 		$(this).removeAttr('style')
 		$(this).addClass('animated flip');
 		a.addClass('animated bounceOutLeft');
@@ -74,11 +74,11 @@ function categoria (){
 		b = preg[$(this).index()];
 		setTimeout(function(){
 			$('.flip').removeClass('flip');
-		}, 1500);
+		}, 500);
 		setTimeout(function(){
 			a.addClass('hidden');
 			preguntas();
-		}, 3000);
+		}, 500);
 	});
 }
 
@@ -131,7 +131,7 @@ function preguntas(){
 		}
 		setTimeout(function(){
 			a.removeClass('animated bounceInLeft')
-		}, 1500);
+		}, 500);
 	}
 }
 
