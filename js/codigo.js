@@ -86,7 +86,7 @@ function categoria (){
 				}, 1500);
 				setTimeout(function(){
 					a.addClass('hidden');
-					todasPreguntas();
+					preguntas(todos = true);
 				}, 1500)
 			}else{
 				setTimeout(function(){
@@ -94,14 +94,17 @@ function categoria (){
 				}, 1500);
 				setTimeout(function(){
 					a.addClass('hidden');
-					preguntas();
+					preguntas(todos = false);
 				}, 3000);
 			}
 		}
 	});
 }
 
-function preguntas(){
+function preguntas(todos){
+	if (todos === true){
+		b = preg[Math.floor(Math.random()*4 + 0)];
+	}
 	if (x < 10) {
 		x++
 		c = Math.floor(Math.random()*10 + 0);
@@ -109,53 +112,104 @@ function preguntas(){
 			c = Math.floor(Math.random()*10 + 0);
 		}
 		b.preguntas[c].estado = true;
-		$('section.prueba').append('<h1>' + b.categorias + '</h1><p class="pregunta animated bounceInRight">' + b.preguntas[c].textoEnunciado + '</p><div class="conjunto animated bounceInRight"><div id="correcta" class="juntos"><img class="marco2" src=img/' + b.preguntas[c].imagenCorrecta + '><p class="letra">&mdash;' + b.preguntas[c].correcta + '&mdash;</p></div><div id="incorrecta" class="juntos"><img class="marco2" src=img/' + b.preguntas[c].imagenIncorrecta + '><p class="letra">&mdash;' + b.preguntas[c].incorrecta + '&mdash;</p></div></div>');
+		var elegir = '<div id="correcta" class="juntos"><img class="marco2" src=img/' + b.preguntas[c].imagenCorrecta + '><p class="letra">&mdash;' + b.preguntas[c].correcta + '&mdash;</p></div>'
+		var random = Math.floor(Math.random()*2 + 0);
+		if (random == 1) {
+			$('section.prueba').append('<h1>' + b.categorias + '</h1><p class="pregunta animated bounceInRight">' + b.preguntas[c].textoEnunciado + '</p><div class="conjunto animated bounceInRight">' + elegir + '<div id="incorrecta" class="juntos"><img class="marco2" src=img/' + b.preguntas[c].imagenIncorrecta + '><p class="letra">&mdash;' + b.preguntas[c].incorrecta + '&mdash;</p></div></div>');
 			$('img.marco2').one('click', function(event){
-			event.stopImmediatePropagation();
-			setTimeout(function(){
-				$('p.pregunta').removeClass('animated bounceInRight');
-				$('div.conjunto').removeClass('animated bounceInRight');
-			}, 1500);
-			if ($(this).attr('src') == 'img/' + b.preguntas[c].imagenCorrecta) {
-				$('#incorrecta').children().addClass('hidden');
-				$('#incorrecta').append('<p class="texto animated bounceInRight">' + b.preguntas[c].correctaExplicacion + '</p>');
+				event.stopImmediatePropagation();
 				setTimeout(function(){
 					$('p.pregunta').removeClass('animated bounceInRight');
-					$('div.conjunto').removeClass('animated bounceInRight')
-					$('#incorrecta').removeClass('animated bounceInRight')
+					$('div.conjunto').removeClass('animated bounceInRight');
 				}, 1500);
-				setTimeout(function(){
-					$('p.pregunta').addClass('animated bounceOutLeft');
-					$('div.conjunto').addClass('animated bounceOutLeft');
-					$('#incorrecta').addClass('animated bounceOutLeft');
-				}, 6000);
-				setTimeout(function(){
-					$('h1').remove();
-					$('p.pregunta').remove();
-					$('div.conjunto').remove();
-					preguntas();
-				}, 7000);
-			}else{
-				$('#correcta').children().addClass('hidden');
-				$('#correcta').append('<p class="texto animated bounceInLeft">' + b.preguntas[c].incorrectaExplicacion + '</p>');
+				if ($(this).attr('src') == 'img/' + b.preguntas[c].imagenCorrecta) {
+					$('#incorrecta').children().addClass('hidden');
+					$('#incorrecta').append('<p class="texto animated bounceInRight">' + b.preguntas[c].correctaExplicacion + '</p>');
+					setTimeout(function(){
+						$('p.pregunta').removeClass('animated bounceInRight');
+						$('div.conjunto').removeClass('animated bounceInRight')
+						$('#incorrecta').removeClass('animated bounceInRight')
+					}, 1500);
+					setTimeout(function(){
+						$('p.pregunta').addClass('animated bounceOutLeft');
+						$('div.conjunto').addClass('animated bounceOutLeft');
+						$('#incorrecta').addClass('animated bounceOutLeft');
+					}, 6000);
+					setTimeout(function(){
+						$('h1').remove();
+						$('p.pregunta').remove();
+						$('div.conjunto').remove();
+						preguntas();
+					}, 7000);
+				}else{
+					$('#correcta').children().addClass('hidden');
+					$('#correcta').append('<p class="texto animated bounceInLeft">' + b.preguntas[c].incorrectaExplicacion + '</p>');
+					setTimeout(function(){
+						$('p.pregunta').removeClass('animated bounceInRight');
+						$('div.conjunto').removeClass('animated bounceInRight')
+						$('#correcta').removeClass('animated bounceInLeft')
+					}, 1500);
+					setTimeout(function(){
+						$('p.pregunta').addClass('animated bounceOutLeft');
+						$('div.conjunto').addClass('animated bounceOutLeft');
+						$('#incorrecta').addClass('animated bounceOutLeft');
+					}, 6000);
+					setTimeout(function(){
+						$('h1').remove();
+						$('p.pregunta').remove();
+						$('div.conjunto').remove();
+						preguntas();
+					}, 7000);
+				}
+			});
+		}else{
+			$('section.prueba').append('<h1>' + b.categorias + '</h1><p class="pregunta animated bounceInRight">' + b.preguntas[c].textoEnunciado + '</p><div class="conjunto animated bounceInRight"><div id="incorrecta" class="juntos"><img class="marco2" src=img/' + b.preguntas[c].imagenIncorrecta + '><p class="letra">&mdash;' + b.preguntas[c].incorrecta + '&mdash;</p></div>' + elegir + '</div>');
+			$('img.marco2').one('click', function(event){
 				setTimeout(function(){
 					$('p.pregunta').removeClass('animated bounceInRight');
-					$('div.conjunto').removeClass('animated bounceInRight')
-					$('#correcta').removeClass('animated bounceInLeft')
+					$('div.conjunto').removeClass('animated bounceInRight');
 				}, 1500);
-				setTimeout(function(){
-					$('p.pregunta').addClass('animated bounceOutLeft');
-					$('div.conjunto').addClass('animated bounceOutLeft');
-					$('#incorrecta').addClass('animated bounceOutLeft');
-				}, 6000);
-				setTimeout(function(){
-					$('h1').remove();
-					$('p.pregunta').remove();
-					$('div.conjunto').remove();
-					preguntas();
-				}, 7000);
-			}
-		});
+				if ($(this).attr('src') == 'img/' + b.preguntas[c].imagenCorrecta) {
+					$('#incorrecta').children().addClass('hidden');
+					$('#incorrecta').append('<p class="texto animated bounceInLeft">' + b.preguntas[c].correctaExplicacion + '</p>');
+					setTimeout(function(){
+						$('p.pregunta').removeClass('animated bounceInRight');
+						$('div.conjunto').removeClass('animated bounceInRight')
+						$('#incorrecta').removeClass('animated bounceInLeft')
+					}, 1500);
+					setTimeout(function(){
+						$('p.pregunta').addClass('animated bounceOutLeft');
+						$('div.conjunto').addClass('animated bounceOutLeft');
+						$('#incorrecta').addClass('animated bounceOutLeft');
+					}, 6000);
+					setTimeout(function(){
+						$('h1').remove();
+						$('p.pregunta').remove();
+						$('div.conjunto').remove();
+						preguntas();
+					}, 7000);
+				}else{
+					$('#correcta').children().addClass('hidden');
+					$('#correcta').append('<p class="texto animated bounceInRight">' + b.preguntas[c].incorrectaExplicacion + '</p>');
+					setTimeout(function(){
+						$('p.pregunta').removeClass('animated bounceInRight');
+						$('div.conjunto').removeClass('animated bounceInRight')
+						$('#correcta').removeClass('animated bounceInRight')
+					}, 1500);
+					setTimeout(function(){
+						$('p.pregunta').addClass('animated bounceOutLeft');
+						$('div.conjunto').addClass('animated bounceOutLeft');
+						$('#incorrecta').addClass('animated bounceOutLeft');
+					}, 6000);
+					setTimeout(function(){
+						$('h1').remove();
+						$('p.pregunta').remove();
+						$('div.conjunto').remove();
+						preguntas();
+					}, 7000);
+				}
+			});
+		}
 	}else{
 		llamarCategoria();
 	}
@@ -174,65 +228,4 @@ function llamarCategoria(){
 	setTimeout(function(){
 		a.removeClass('animated bounceInLeft');
 	}, 500);
-}
-
-function todasPreguntas(){
-	if (x < 10) {
-		x++
-		b = preg[Math.floor(Math.random()*4 + 0)];
-		c = Math.floor(Math.random()*10 + 0);
-		while (b.preguntas[c].estado == true){
-			c = Math.floor(Math.random()*10 + 0);
-		}
-		b.preguntas[c].estado = true;
-		$('section.prueba').append('<h1>' + b.categorias + '</h1><p class="pregunta animated bounceInRight">' + b.preguntas[c].textoEnunciado + '</p><div class="conjunto animated bounceInRight"><div id="correcta" class="juntos"><img class="marco2" src=img/' + b.preguntas[c].imagenCorrecta + '><p class="letra">&mdash;' + b.preguntas[c].correcta + '&mdash;</p></div><div id="incorrecta" class="juntos"><img class="marco2" src=img/' + b.preguntas[c].imagenIncorrecta + '><p class="letra">&mdash;' + b.preguntas[c].incorrecta + '&mdash;</p></div></div>');
-			$('img.marco2').one('click', function(event){
-			event.stopImmediatePropagation();
-			setTimeout(function(){
-				$('p.pregunta').removeClass('animated bounceInRight');
-				$('div.conjunto').removeClass('animated bounceInRight');
-			}, 1500);
-			if ($(this).attr('src') == 'img/' + b.preguntas[c].imagenCorrecta) {
-				$('#incorrecta').children().addClass('hidden');
-				$('#incorrecta').append('<p class="texto animated bounceInRight">' + b.preguntas[c].correctaExplicacion + '</p>');
-				setTimeout(function(){
-					$('p.pregunta').removeClass('animated bounceInRight');
-					$('div.conjunto').removeClass('animated bounceInRight')
-					$('#incorrecta').removeClass('animated bounceInRight')
-				}, 1500);
-				setTimeout(function(){
-					$('p.pregunta').addClass('animated bounceOutLeft');
-					$('div.conjunto').addClass('animated bounceOutLeft');
-					$('#incorrecta').addClass('animated bounceOutLeft');
-				}, 6000);
-				setTimeout(function(){
-					$('h1').remove();
-					$('p.pregunta').remove();
-					$('div.conjunto').remove();
-					todasPreguntas();
-				}, 7000);
-			}else{
-				$('#correcta').children().addClass('hidden');
-				$('#correcta').append('<p class="texto animated bounceInLeft">' + b.preguntas[c].incorrectaExplicacion + '</p>');
-				setTimeout(function(){
-					$('p.pregunta').removeClass('animated bounceInRight');
-					$('div.conjunto').removeClass('animated bounceInRight')
-					$('#correcta').removeClass('animated bounceInLeft')
-				}, 1500);
-				setTimeout(function(){
-					$('p.pregunta').addClass('animated bounceOutLeft');
-					$('div.conjunto').addClass('animated bounceOutLeft');
-					$('#incorrecta').addClass('animated bounceOutLeft');
-				}, 6000);
-				setTimeout(function(){
-					$('h1').remove();
-					$('p.pregunta').remove();
-					$('div.conjunto').remove();
-					todasPreguntas();
-				}, 7000);
-			}
-		});
-	}else{
-		llamarCategoria();
-	}
 }
