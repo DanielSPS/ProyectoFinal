@@ -163,7 +163,7 @@ svg {
 	margin-bottom: 5em;
 }
 .cabeceratitulo {
-  font: 8.5em/1 'Open Sans', Impact;
+  font: 7.2em/1 'Open Sans', Impact;
   text-transform: uppercase;
   letter-spacing: 12px;
   margin: 0;
@@ -198,6 +198,10 @@ section {
 	border: 3px solid lightgray;
   border-radius: 10px;
 }
+.marco {
+	border: 3px solid lightgray;
+  	border-radius: 10px;
+}
 span {
 	font-size: 1.5em;
 	color: white;
@@ -214,4 +218,30 @@ span {
 	margin-top: 1%;
 	margin-right: 6%;
 	margin-bottom: 1%;
+}
+.pregunta {
+	color: white;
+	font-size: 3em;
+	text-shadow: -2px -2px 1px black;
+	font-family: 'Open Sans', sans-serif;
+	margin-bottom: 2em;
+}
+.conjunto {
+	width: auto;
+}
+.juntos {
+	float: left;
+	width: 50%;
+}
+.marco2 {
+	border: 12px double gray;
+  	border-radius: 10px;
+}
+.letra {
+	color: white;
+	font-size: 2em;
+	text-shadow: -2px -2px 1px black;
+	font-family: 'Palanquin Dark', sans-serif;
+	margin-top: 1em;
+	letter-spacing: .1em;
 }
