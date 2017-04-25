@@ -108,6 +108,20 @@ svg {
   height: 80%;
 }
 /* hasta aque las letras del medio */
+.grow:hover
+{
+        -webkit-transform: scale(1.3);
+        -ms-transform: scale(1.3);
+        transform: scale(1.3);
+}
+/*  */
+.rotate:hover
+{
+        -webkit-transform: rotateZ(-30deg);
+        -ms-transform: rotateZ(-30deg);
+        transform: rotateZ(-30deg);
+}
+/*  */
 .div-img {
   display: block;
   margin-left: auto;
@@ -159,7 +173,7 @@ svg {
 #cabecera {
 	text-align: center;
 	align-items: center;
-	margin-top: 1em;
+	margin-top: 2em;
 	margin-bottom: 5em;
 }
 .cabeceratitulo {
