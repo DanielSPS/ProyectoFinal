@@ -30,7 +30,7 @@ var preg = [
 		{textoEnunciado: '', imagen1: '', imagen2: '', correcta: '', incorrecta: '', incorrectaExplicacion: '', correctaExplicacion: '', estado: false},
 	]},
 	//Geografía
-	{categoria: 'Geografía', preguntas: [
+	{categorias: 'Geografía', preguntas: [
 		{textoEnunciado: '¿Sabes cual de estas 2 playas tiene mayor longitud?', imagenCorrecta: 'Oceanoatlantico.jpg', imagenIncorrecta: 'Oceanopacifico.jpg', incorrecta: 'Playa de la Barceloneta', correcta: 'Playa de La Concha', incorrectaExplicacion: 'Muy mal!!! Es una de las más largas con una longitud de 1100 metros. Junto con la de San Splaya cercana) es una de las más antiguas y de mayor tradición de la ciudad y también una de las preferidas por los usuarios extranjeros. Mientras que la playa de La Concha tiene una longitad de 1350m.', correctaExplicacion: 'Muy bien!!! Ubicada al oeste de la desembocadura del río Urumea, separada del mismo por el monte Urgull y alojada en la bahía de la Concha, tiene una longitud media de 1.350 m, una anchura media de 40 m y una superficie media de 54.000 m². <span>Mientras que la playa de la Barceloneta tiene una longitud de 1100m.', estado: false},
 		{textoEnunciado: '¿Sabes que oceano es mas profundo?', imagenCorrecta: 'Oceanoatlantico.jpg', imagenIncorrecta: 'Oceanopacifico.jpg', correcta: 'Ocenao Pacífico', incorrecta: 'Oceano Atlántico', incorrectaExplicacion: '<span>Muy mal!!!</span> El océano Atlántico es el océano que separa América, al oeste de Europa y África, al este. Tiene una profundidad maxima de 8 605 m (fosa de Puerto Rico). Se extiende desde el océano Ártico, en el norte, hasta el océano Antártico, en el sur. Es el segundo océano más extenso de la Tierra tras el océano Pacífico. <span>Mientras que el oceano Pacífico tiene una profundidad máxima de 10.924m</span>', correctaExplicacion: '<span>Muy bien!!!</span> El océano Pacífico es el mayor océano de la Tierra. Tiene una profundidad máxima de 10.924m (Abismo Challenger en la Fosa de las Marianas). Ocupa la tercera parte de su superficie y se extiende aproximadamente 15 000 km desde el mar de Bering limitando con el Ártico por el norte, hasta los márgenes congelados del mar de Ross y limitando por el sur con la Antártida. <span>Mientras que el oceano Atlantico tiene una profundidad de Máxima: 8 605 m (fosa de Puerto Rico).</span>', estado: false},
 		{textoEnunciado: '¿Sabes que país tiene mas superficie?', imagenCorrecta: 'Oceanoatlantico.jpg', imagenIncorrecta: 'Oceanopacifico.jpg', correcta: 'Reino Unido', incorrecta: 'Rumania', incorrectaExplicacion: '<span>¡Muy mal!</span> Rumania es un país ubicado en la intersección de Europa Central y del Sureste, en la frontera con el mar Negro. Rumania limita con Hungría y Serbia al oeste, Ucrania y Moldavia al noreste y al este, y Bulgaria al sur. Con una superficie de 238 391 km2. <span>Mientras que el Reino unido tiene 243 610km².</span>', correctaExplicacion: '<span>¡Muy bien!</span> El Reino Unido, denominado oficialmente Reino Unido de Gran Bretaña e Irlanda del Norte (United Kingdom of Great Britain and Northern Ireland),con una superficie de 243 610km² es un país soberano e insular, miembro de la Unión Europea,nota 1 ubicado al noroeste de la Europa Continental. <span>Mientras que Rumania tiene 238 391 km2.', estado: false},
@@ -93,7 +93,7 @@ function preguntas(){
 			c = Math.floor(Math.random()*10 + 0);
 		}
 		b.preguntas[c].estado = true;
-		$('section.prueba').append('<p class="pregunta animated bounceInRight">' + b.preguntas[c].textoEnunciado + '</p><div class="conjunto animated bounceInRight"><div class="juntoscorrecta"><img class="marco2" src=img/' + b.preguntas[c].imagenCorrecta + '><p class="letra">&mdash;' + b.preguntas[c].correcta + '&mdash;</p></div><div class="juntosincorrecta"><img class="marco2" src=img/' + b.preguntas[c].imagenIncorrecta + '><p class="letra">&mdash;' + b.preguntas[c].incorrecta + '&mdash;</p></div></div>');
+		$('section.prueba').append('<h1>' + b.categorias + '</h1><p class="pregunta animated bounceInRight">' + b.preguntas[c].textoEnunciado + '</p><div class="conjunto animated bounceInRight"><div id="correcta" class="juntos"><img class="marco2" src=img/' + b.preguntas[c].imagenCorrecta + '><p class="letra">&mdash;' + b.preguntas[c].correcta + '&mdash;</p></div><div id="incorrecta" class="juntos"><img class="marco2" src=img/' + b.preguntas[c].imagenIncorrecta + '><p class="letra">&mdash;' + b.preguntas[c].incorrecta + '&mdash;</p></div></div>');
 			$('img.marco2').one('click', function(event){
 			event.stopImmediatePropagation();
 			setTimeout(function(){
@@ -101,37 +101,39 @@ function preguntas(){
 				$('div.conjunto').removeClass('animated bounceInRight');
 			}, 1500);
 			if ($(this).attr('src') == 'img/' + b.preguntas[c].imagenCorrecta) {
-				$('div.juntosincorrecta').children().addClass('hidden');
-				$('div.juntosincorrecta').append('<p class="texto animated bounceInRight">' + b.preguntas[c].correctaExplicacion + '</p>');
+				$('#incorrecta').children().addClass('hidden');
+				$('#incorrecta').append('<p class="texto animated bounceInRight">' + b.preguntas[c].correctaExplicacion + '</p>');
 				setTimeout(function(){
 					$('p.pregunta').removeClass('animated bounceInRight');
 					$('div.conjunto').removeClass('animated bounceInRight')
-					$('div.juntosincorrecta').removeClass('animated bounceInRight')
+					$('#incorrecta').removeClass('animated bounceInRight')
 				}, 1500);
 				setTimeout(function(){
 					$('p.pregunta').addClass('animated bounceOutLeft');
 					$('div.conjunto').addClass('animated bounceOutLeft');
-					$('div.juntosincorrecta').addClass('animated bounceOutLeft');
+					$('#incorrecta').addClass('animated bounceOutLeft');
 				}, 6000);
 				setTimeout(function(){
+					$('h1').remove();
 					$('p.pregunta').remove();
 					$('div.conjunto').remove();
 					preguntas();
 				}, 7000);
 			}else{
-				$('div.juntoscorrecta').children().addClass('hidden');
-				$('div.juntoscorrecta').append('<p class="texto animated bounceInLeft">' + b.preguntas[c].incorrectaExplicacion + '</p>');
+				$('#correcta').children().addClass('hidden');
+				$('#correcta').append('<p class="texto animated bounceInLeft">' + b.preguntas[c].incorrectaExplicacion + '</p>');
 				setTimeout(function(){
 					$('p.pregunta').removeClass('animated bounceInRight');
 					$('div.conjunto').removeClass('animated bounceInRight')
-					$('div.juntoscorrecta').removeClass('animated bounceInLeft')
+					$('#correcta').removeClass('animated bounceInLeft')
 				}, 1500);
 				setTimeout(function(){
 					$('p.pregunta').addClass('animated bounceOutLeft');
 					$('div.conjunto').addClass('animated bounceOutLeft');
-					$('div.juntosincorrecta').addClass('animated bounceOutLeft');
+					$('#incorrecta').addClass('animated bounceOutLeft');
 				}, 6000);
 				setTimeout(function(){
+					$('h1').remove();
 					$('p.pregunta').remove();
 					$('div.conjunto').remove();
 					preguntas();
