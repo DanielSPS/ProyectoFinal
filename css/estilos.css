@@ -174,7 +174,7 @@ svg {
 	text-align: center;
 	align-items: center;
 	margin-top: 2em;
-	margin-bottom: 5em;
+	margin-bottom: 2em;
 }
 .cabeceratitulo {
   font: 7.2em/1 'Open Sans', Impact;
@@ -235,7 +235,7 @@ span {
 }
 .pregunta {
 	color: white;
-	font-size: 3em;
+	font-size: 2em;
 	text-shadow: -2px -2px 1px black;
 	font-family: 'Open Sans', sans-serif;
 	margin-bottom: 2em;
@@ -249,7 +249,8 @@ span {
 }
 .marco2 {
 	border: 12px double gray;
-  	border-radius: 10px;
+  border-radius: 10px;
+  width: 60%;
 }
 .letra {
 	color: white;
