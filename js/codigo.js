@@ -1,6 +1,7 @@
 var a = $('section.prueba').children();
 var b;
 var c;
+var x = 0;
 var preg = [
 	//Naruraleza
 	{categorias: 'Naturaleza', preguntas: [
@@ -63,7 +64,6 @@ $(document).ready(function() {
 	setTimeout(function(){ a.removeClass('animated bounceInLeft'); }, 1000);
 });
 
-var x = 0;
 function categoria (){
 	a.fadeTo('fast', 0.1);
 	$(this).fadeTo('fast', 1);
@@ -86,7 +86,6 @@ function categoria (){
 }
 
 function preguntas(){
-	console.log(x)
 	if (x < 10) {
 		x++
 		c = Math.floor(Math.random()*10 + 0);
@@ -94,36 +93,49 @@ function preguntas(){
 			c = Math.floor(Math.random()*10 + 0);
 		}
 		b.preguntas[c].estado = true;
-		$('section.prueba').append('<p class="pregunta animated bounceInRight">' + b.preguntas[c].textoEnunciado + '</p>' + '<div class="conjunto animated bounceInRight">' + '<div class="juntos">' + '<img class="marco2" src=img/' + b.preguntas[c].imagenCorrecta + '>' + '<p class="letra"> &mdash;' + b.preguntas[c].correcta + '&mdash; </p>' + '</div>' + '<div class="juntos">' + '<img class="marco2" src=img/' + b.preguntas[c].imagenIncorrecta + '>' + '<p class="letra"> &mdash;' + b.preguntas[c].incorrecta + '&mdash; </p>' + '</div>' + '</div>');
-			$('img.imagen').one('click', function(event){
+		$('section.prueba').append('<p class="pregunta animated bounceInRight">' + b.preguntas[c].textoEnunciado + '</p><div class="conjunto animated bounceInRight"><div class="juntoscorrecta"><img class="marco2" src=img/' + b.preguntas[c].imagenCorrecta + '><p class="letra">&mdash;' + b.preguntas[c].correcta + '&mdash;</p></div><div class="juntosincorrecta"><img class="marco2" src=img/' + b.preguntas[c].imagenIncorrecta + '><p class="letra">&mdash;' + b.preguntas[c].incorrecta + '&mdash;</p></div></div>');
+			$('img.marco2').one('click', function(event){
 			event.stopImmediatePropagation();
 			setTimeout(function(){
-				$('p.texto').removeClass('animated bounceInRight');
-			}, 500);
+				$('p.pregunta').removeClass('animated bounceInRight');
+				$('div.conjunto').removeClass('animated bounceInRight');
+			}, 1500);
 			if ($(this).attr('src') == 'img/' + b.preguntas[c].imagenCorrecta) {
-				$('section.prueba').append('<p class="texto animated bounceInRight">' + b.preguntas[c].correctaExplicacion + '</p>');
+				$('div.juntosincorrecta').children().addClass('hidden');
+				$('div.juntosincorrecta').append('<p class="texto animated bounceInRight">' + b.preguntas[c].correctaExplicacion + '</p>');
 				setTimeout(function(){
-					$('p.texto').removeClass('animated bounceInRight');
-				}, 500);
+					$('p.pregunta').removeClass('animated bounceInRight');
+					$('div.conjunto').removeClass('animated bounceInRight')
+					$('div.juntosincorrecta').removeClass('animated bounceInRight')
+				}, 1500);
 				setTimeout(function(){
-					$('p.texto').addClass('animated bounceOutLeft');
-				}, 500);
+					$('p.pregunta').addClass('animated bounceOutLeft');
+					$('div.conjunto').addClass('animated bounceOutLeft');
+					$('div.juntosincorrecta').addClass('animated bounceOutLeft');
+				}, 6000);
 				setTimeout(function(){
-					$('p.texto').addClass('hidden');
+					$('p.pregunta').remove();
+					$('div.conjunto').remove();
 					preguntas();
-				}, 500);
+				}, 7000);
 			}else{
-			$('section.prueba').append('<p class="texto animated bounceInRight">' + b.preguntas[c].incorrectaExplicacion + '</p>');
-			setTimeout(function(){
-				$('p.texto').removeClass('animated bounceInRight');
-			}, 500);
-			setTimeout(function(){
-				$('p.texto').addClass('animated bounceOutLeft');
-			}, 500);
-			setTimeout(function(){
-				$('p.texto').addClass('hidden');
-				preguntas();
-				}, 500);
+				$('div.juntoscorrecta').children().addClass('hidden');
+				$('div.juntoscorrecta').append('<p class="texto animated bounceInLeft">' + b.preguntas[c].incorrectaExplicacion + '</p>');
+				setTimeout(function(){
+					$('p.pregunta').removeClass('animated bounceInRight');
+					$('div.conjunto').removeClass('animated bounceInRight')
+					$('div.juntoscorrecta').removeClass('animated bounceInLeft')
+				}, 1500);
+				setTimeout(function(){
+					$('p.pregunta').addClass('animated bounceOutLeft');
+					$('div.conjunto').addClass('animated bounceOutLeft');
+					$('div.juntosincorrecta').addClass('animated bounceOutLeft');
+				}, 6000);
+				setTimeout(function(){
+					$('p.pregunta').remove();
+					$('div.conjunto').remove();
+					preguntas();
+				}, 7000);
 			}		
 		});
 	}else{
@@ -142,18 +154,3 @@ function llamarCategoria(){
 		a.removeClass('animated bounceInLeft')
 	}, 500);
 }
-
-// Esta funciona
-/*var a = $('div.padre').children();
-function categoria (){
-	$(this).fadeTo('fast', 1);
-	$(this).click(function (){
-		console.log('click')
-		$(this).addClass('animated flip');
-		$('.tamaño').addClass('animated bounceOutLeft')
-		setTimeout(function(){ a.removeClass('animated flip'); }, 1000);
-		setTimeout(function(){ a.removeClass('animated bounceOutLeft'); }, 1000);
-		$(this).addClass('animated bounceOutLeft');
-		setTimeout(function(){ a.removeClass('animated bounceOutLeft'); }, 1000);
-	})
-}*/
